@@ -1,0 +1,228 @@
+<div
+  class="container-fluid fixed-top"
+  style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.06)"
+  *ngIf="loggedIn"
+>
+  <div class="box">
+    <div class="toggle-button" (click)="toggleCollapse()">
+      <img src="assets/images/menu.svg" alt="" class="me-4" />
+    </div>
+  </div>
+  <div class="box">
+    <img
+      src="assets/tn_logo/TN Logo-02.png"
+      class="img-fluid"
+      id="tn_logo"
+      routerLink="/dashboard"
+    />
+  </div>
+  <div class="box box1">
+    <h3>TNPSC Randomization</h3>
+  </div>
+  <div class="box box2">
+    <!-- <img
+      src="assets/tn_logo/TN Logo-02.png"
+      class="img-fluid"
+      id="tn_logo"
+      routerLink="/dashboard"
+    /> -->
+  </div>
+  <div class="box box3"></div>
+  <div class="box4">
+    <div
+      class=""
+      (click)="toggleDropdown1()"
+      (document:click)="onDocumentClick($event)"
+    >
+      <img src="assets/images/user.svg" class="admin-profile" alt="" /><span>{{
+        name
+      }}</span>
+      <div
+        class="dropdown-content"
+        [ngClass]="{ show: isDropdownOpens1 }"
+        #dropdownRef
+        (click)="logout()"
+      >
+        <ul class="menu" *ngIf="loggedIn">
+          <li
+            routerLinkActive="active"
+            [ngClass]="{ 'nav-active': url == '/admin/login' }"
+          >
+            <a class="logout me-5" routerLink="/admin/login">
+              <img src="assets/images/logout-1.svg" alt="" /> Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  [ngClass]="{ sidebar: true, collapsed: isCollapsed, close: isCollapsed }"
+  *ngIf="loggedIn"
+>
+  <nav>
+    <ul class="nav-links">
+      <!-- Dashboard -->
+      <li
+        routerLinkActive="active"
+        [ngClass]="{ 'nav-active': url == '/dashboard' }"
+        (click)="onMenuChange()"
+      >
+        <a routerLink="/dashboard">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M12 18V15"
+              stroke="#777777"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M10.07 2.82009L3.14002 8.37009C2.36002 8.99009 1.86002 10.3001 2.03002 11.2801L3.36002 19.2401C3.60002 20.6601 4.96002 21.8101 6.40002 21.8101H17.6C19.03 21.8101 20.4 20.6501 20.64 19.2401L21.97 11.2801C22.13 10.3001 21.63 8.99009 20.86 8.37009L13.93 2.83009C12.86 1.97009 11.13 1.97009 10.07 2.82009Z"
+              stroke="#777777"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="link_name">Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Duty Allotment -->
+      <li
+        *ngIf="ecLoggin || adminLogin || csrteamLogin"
+        routerLinkActive="active"
+      >
+        <div class="iocn-link" (click)="material()">
+          <a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M21.47 19V5C21.47 3 20.47 2 18.47 2H14.47C12.47 2 11.47 3 11.47 5V19C11.47 21 12.47 22 14.47 22H18.47C20.47 22 21.47 21 21.47 19Z"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M11.47 6H16.47"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M11.47 18H15.47"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M11.47 13.95L16.47 14"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M11.47 10H14.47"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M5.49 2C3.86 2 2.53 3.33 2.53 4.95V17.91C2.53 18.36 2.72 19.04 2.95 19.43L3.77 20.79C4.71 22.36 6.26 22.36 7.2 20.79L8.02 19.43C8.25 19.04 8.44 18.36 8.44 17.91V4.95C8.44 3.33 7.11 2 5.49 2Z"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M8.44 7H2.53"
+                stroke="#777777"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span class="link_name">Duty Allotment</span>
+          </a>
+          <img
+            src="assets/images/arrow.svg"
+            class="i arrow"
+            alt=""
+            width="16px"
+          />
+        </div>
+        <ul
+          class="sub-menu"
+          *ngIf="isDropdownVisible"
+          [ngClass]="{ showMenu: isDropdownVisible }"
+        >
+          <li
+            [ngClass]="{ 'nav-active': url == '/#' }"
+            (click)="onMenuChange()"
+          >
+            <a routerLink="/#"> URL 1</a>
+          </li>
+          <li
+            [ngClass]="{ 'nav-active': url == '/#' }"
+            (click)="onMenuChange()"
+          >
+            <a routerLink="/#"> URL 2</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Employee -->
+      <li
+        *ngIf="adminLogin || pmuLogin"
+        routerLinkActive="active"
+        [ngClass]="{ 'nav-active': url == '/admin/volunteers' }"
+        (click)="onMenuChange()"
+      >
+        <a routerLink="/employee">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+          >
+            <path
+              d="M14.56 19.05L16.08 20.57L19.12 17.53"
+              stroke="#777777"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.28 10.87C12.18 10.86 12.06 10.86 11.95 10.87C9.57 10.79 7.68 8.84 7.68 6.44C7.67 3.99 9.66 2 12.11 2C14.56 2 16.55 3.99 16.55 6.44C16.55 8.84 14.65 10.79 12.28 10.87Z"
+              stroke="#777777"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.11 21.8099C10.29 21.8099 8.48 21.3499 7.1 20.4299C4.68 18.8099 4.68 16.1699 7.1 14.5599C9.85 12.7199 14.36 12.7199 17.11 14.5599"
+              stroke="#777777"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="link_name">Employee</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

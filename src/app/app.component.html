@@ -1,0 +1,29 @@
+<ng-container *ngIf="isLoginPage; else adminLayout">
+  <app-login></app-login>
+</ng-container>
+
+<ng-template #adminLayout>
+  <div class="container-fluid main-cont">
+    <div class="sidebar-container">
+      <app-header (sidebarToggle)="onSidebarToggle($event)"></app-header>
+    </div>
+    <div
+      class="content"
+      [ngClass]="{ 'content-expanded': !isSidebarCollapsed }"
+    >
+      <!-- <router-outlet></router-outlet> -->
+      <div class="container relative">
+        <div class="row">
+          <div class="col-md-12 bg-lightblue mb-5">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+      <footer class="col-md-12 ps-4 mt-5">
+        <div class="footer-content">
+          <p>&copy; 2023 TNPSC. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</ng-template>

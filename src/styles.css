@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("assets/fonts/Poppins-Regular.ttf");
+}
+
+body {
+  width: 100%;
+  /* max-width: 1550px; */
+  /* margin: auto; */
+  background-color: #f3f3f9 !important;
+  font-family: "Poppins";
+  min-height: 500px;
+}
+
+.all-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hor-center {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.form-err {
+  color: #ff0000;
+}

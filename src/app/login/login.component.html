@@ -1,0 +1,62 @@
+<div class="login-container h-100">
+  <div class="top">
+    <div class="all-center py-2">
+      <img
+        src="assets/tn_logo/TN Logo-02.png"
+        class="img-fluid"
+        id="tn_logo"
+        width="72px"
+      />
+      <h3 class="fw-bold">TNPSC</h3>
+    </div>
+  </div>
+  <form class="login-form" [formGroup]="formGroup" (ngSubmit)="loginproces()">
+    <label for="email" class="">Email</label>
+    <input
+      type="text"
+      class=""
+      id="email"
+      formControlName="email"
+      [ngClass]="{
+        'is-invalid': (submitted || f.email.touched) && f.email.invalid
+      }"
+    />
+    <small *ngIf="(submitted || f.email.touched) && f.email.invalid">
+      <div *ngIf="f.email.errors.required">
+        <span class="form-err">Email is required. </span>
+      </div>
+      <div *ngIf="f.email.errors.email">
+        <span class="form-err">Invalid Email</span>
+      </div>
+    </small>
+
+    <label for="password" class="">Password</label>
+    <input
+      type="password"
+      class=""
+      id="password"
+      formControlName="password"
+      [ngClass]="{
+        'is-invalid': (submitted || f.password.touched) && f.password.invalid
+      }"
+    />
+    <small *ngIf="(submitted || f.password.touched) && f.password.invalid">
+      <div *ngIf="f.password.errors.required">
+        <span class="form-err">Password is required. </span>
+      </div>
+    </small>
+    <!-- </div> -->
+    <div class="">
+      <button class="btn submit-btn" type="submit" [disabled]="disableButton">
+        Login
+        <i class="fa fa-spinner fa-spin" *ngIf="otpLoading"></i>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="d-block text-center footer-content">
+  <span class="mx-auto">© 2023 TNPSC. All Rights Reserved.</span>
+</div>
+
+<p-toast></p-toast>
