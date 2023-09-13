@@ -16,15 +16,6 @@ pipeline {
             steps {
                 echo 'Deploying....'
             }
-        }      
-    }
-    post {
-        success {
-            sh 'cp -r /var/lib/jenkins/workspace/template /home/proz/deployment/'
-            
-        }
-        failure {
-            sh 'cp -f /var/lib/jenkins/workspace/template /home/proz/deployment/'
         }
     }
 }
